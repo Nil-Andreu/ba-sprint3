@@ -224,27 +224,28 @@ function generateCart() {
 
 // Exercise 7
 function applyPromotionsCart() {
-  // Apply promotions to each item in the array "cart"
-
-  // Will run the functions we need to calculate the subtotal
+  // Will run the functions we need to get the cart
+  // generateCart()
 
   // Will loop for each item in the cart
   for (let i = 0; i < cart.length; i++) {
     console.log(cart[i])
     // And for each item we will check which is the type and quantity
     cartName = cart[i].name;
+    console.log(cartName)
 
     switch (cartName) {
       case "cooking oil":
         if (cart[i].quantity > 3) {
-          (discount = cart[i].quantity * 0), 5;
-          cart[i].subtotalWithDiscount -= discount;
+          discount = cart[i].quantity * 0.5;
+          console.log(discount)
+          cart[i].subtotalWithDiscount = cart[i].subtotal - discount;
         }
 
-      case "Instant cupcake misture":
+      case "Instant cupcake mixture":
         if (cart[i].quantity > 10) {
-          (discount = cart[i].quantity * 1), 67;
-          cart[i].subtotalWithDiscount -= discount;
+          discount = cart[i].quantity * 1.67;
+          cart[i].subtotalWithDiscount = cart[i].subtotal - discount;
         }
     }
   }
