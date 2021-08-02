@@ -74,6 +74,14 @@ let addToCartList = (id) => {
   // 2. Add found product to the cartList array
   cartList.push(add_product);
   console.log(cartList);
+
+  /*In the case we have not changed the id number, we would make a for loop like the following:
+    for (let i = 1; i < products.length + 1; i++) {
+      if (i == id) {
+        cartList.push(products[id-1])
+      }
+    }
+  */
 };
 
 // Exercise 2
@@ -173,14 +181,73 @@ function applyPromotionsSubtotals() {
 
 // Exercise 6
 function generateCart() {
-    
-  // Using the "cartlist" array that contains all the items in the shopping cart,
-  // generate the "cart" array that does not contain repeated items, instead each item of this array "cart" shows the quantity of product.
+  // We loop for every element of the cartlist
+  console.log("This is the cartList before the first loop", cartList);
+  for (let i = 0; i < cartList.length; i++) {
+    console.log(
+      "For in cartList, where cartlist is",
+      cartList,
+      "in the number",
+      i,
+      "loop"
+    );
+
+    // There is a pretty method for arrays that will make our lives a lot easier
+
+    // The start of the array of cart
+    // We will search for the index
+    index = cart.indexOf(cartList[i]);
+    if (index == -1) {
+      // If returns -1, means the item is not in the array
+      new_item = cartList[i];
+      cart.push(new_item);
+
+      // And now we add the quantity field, which is the element las pushed (so is in position length - 1)
+      cart[cart.length - 1].quantity = 1;
+
+      // We will apply the discounts in the next function
+      cart[cart.length - 1].subtotalWithDiscount = 0;
+
+      // We will have that the subtotal is the price of this product
+      cart[cart.length - 1].subtotal = cart[cart.length - 1].price;
+    } else {
+      // We will go to the index, and increment the quantity
+      cart[index].quantity += 1;
+
+      // As we add a new quantity, the subtotal will be added by 1 the price
+      cart[index].subtotal += cart[index].price;
+    }
+
+    // CHECK WHY IT ALSO CHANGES CARTLIST
+  }
 }
 
 // Exercise 7
 function applyPromotionsCart() {
   // Apply promotions to each item in the array "cart"
+
+  // Will run the functions we need to calculate the subtotal
+
+  // Will loop for each item in the cart
+  for (let i = 0; i < cart.length; i++) {
+    console.log(cart[i])
+    // And for each item we will check which is the type and quantity
+    cartName = cart[i].name;
+
+    switch (cartName) {
+      case "cooking oil":
+        if (cart[i].quantity > 3) {
+          (discount = cart[i].quantity * 0), 5;
+          cart[i].subtotalWithDiscount -= discount;
+        }
+
+      case "Instant cupcake misture":
+        if (cart[i].quantity > 10) {
+          (discount = cart[i].quantity * 1), 67;
+          cart[i].subtotalWithDiscount -= discount;
+        }
+    }
+  }
 }
 
 // Exercise 8
