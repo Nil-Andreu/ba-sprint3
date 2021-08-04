@@ -193,8 +193,6 @@ function generateCart() {
     );
 
     // There is a pretty method for arrays that will make our lives a lot easier
-
-    // The start of the array of cart
     // We will search for the index
     index = cart.indexOf(cartList[i]);
     if (index == -1) {
@@ -222,9 +220,6 @@ function generateCart() {
 
 // Exercise 7
 function applyPromotionsCart() {
-  // Will run the functions we need to get the cart
-  // generateCart()
-
   // Will loop for each item in the cart
   for (let i = 0; i < cart.length; i++) {
     console.log(cart[i]);
@@ -291,5 +286,18 @@ function removeFromCart(id) {
 
 // Exercise 10
 function printCart() {
-  // Fill the shopping cart modal manipulating the shopping cart dom
+  // Will create the list in the JS
+  let list = "<ul>"
+
+  // Will loop for the elements of the cart
+  for (let i of cart) {
+
+    // will print the name of each element of the cart
+    list += `<li>${i.name} with quantity ${i.quantity}</li>`
+  }
+  list += "</ul>"
+  console.log(list)
+
+  // And add the unordered list to the div of the html
+  document.querySelector('.list').innerHTML = list
 }

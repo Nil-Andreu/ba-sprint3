@@ -15,7 +15,8 @@ body{
     color: white;
 }
 .grocery-img{
-    width: 60%;
+    width: 10rem;
+    height: 5rem;
     margin: 1rem auto;
 }
 
