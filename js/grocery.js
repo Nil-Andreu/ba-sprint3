@@ -217,8 +217,6 @@ function generateCart() {
       // As we add a new quantity, the subtotal will be added by 1 the price
       cart[index].subtotal += cart[index].price;
     }
-
-    // CHECK WHY IT ALSO CHANGES CARTLIST
   }
 }
 
@@ -229,16 +227,16 @@ function applyPromotionsCart() {
 
   // Will loop for each item in the cart
   for (let i = 0; i < cart.length; i++) {
-    console.log(cart[i])
+    console.log(cart[i]);
     // And for each item we will check which is the type and quantity
     cartName = cart[i].name;
-    console.log(cartName)
+    console.log(cartName);
 
     switch (cartName) {
       case "cooking oil":
         if (cart[i].quantity > 3) {
           discount = cart[i].quantity * 0.5;
-          console.log(discount)
+          console.log(discount);
           cart[i].subtotalWithDiscount = cart[i].subtotal - discount;
         }
 
@@ -254,13 +252,41 @@ function applyPromotionsCart() {
 // Exercise 8
 function addToCart(id) {
   // 1. Loop for to the array products to get the item to add to cart
-  // 2. Add found product to the cartList array
+  for (let i = 0; i < products.length; i++) {
+    // 2. Add found product to the cart array
+    if (i == id) {
+      new_product = products[i];
+      console.log(new_product)
+
+      index = cart.indexOf(new_product);
+      console.log(index)
+      if (index == -1) {
+        cart.push(new_product);
+        index = cart.length-1
+        cart[index].quantity = 1;
+      } else {
+        cart[index].quantity += 1;
+      }
+    }
+  }
 }
 
 // Exercise 9
 function removeFromCart(id) {
-  // 1. Loop for to the array products to get the item to add to cart
-  // 2. Add found product to the cartList array
+  // I can also use indexof
+  index = cart.indexOf(products[id])
+  if (index == -1) {
+    window.alert("Error, this product was not chosen")
+  }
+  quantity = cart[index].quantity
+
+  if (quantity > 1){
+    // Will substract one to the quantity
+    cart[index].quantity -= 1
+  } else {
+    // Will eliminate one element in the position of the index
+    cart.splice(index, 1)
+  }
 }
 
 // Exercise 10
