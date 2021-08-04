@@ -19,48 +19,62 @@ function validate() {
   addressValue = address.value;
 
   // Checking that the length of the fields are not 0
-  if ((passwordValue || phoneValue || nameValue || emailValue || addressValue) == 0) {
+  if (
+    (passwordValue || phoneValue || nameValue || emailValue || addressValue) ==
+    0
+  ) {
     validateMin = "It is not able to put null fields";
-  } else (validateMin = '')
+  } else validateMin = "";
 
   // Validate the fields have minimum length
-  if ((passwordValue || phoneValue || nameValue || emailValue || addressValue) < 3) {
+  if (
+    (passwordValue || phoneValue || nameValue || emailValue || addressValue) < 3
+  ) {
     validateLength = "All the fields must have a minimum length of 3";
-  } else (validateLength = '')
+  } else validateLength = "";
 
   // Checking all letters in name and last name
   let letters = /^[A-Za-z]+$/;
   if (!nameValue.match(letters)) {
-      validateName = "Name and Surname must have all letters"
-  } else (validateName = '')
+    validateName = "Name and Surname must have all letters";
 
-  // Checking that there are all numbers
+    errorName.style.display = "block";
+    errorName.style.color = "red";
+  } else validateName = "";
+
+  // Checking that phone has all numbers
   let numbers = /^[0-9]+$/;
   if (!phoneValue.match(numbers)) {
     validatePhone = "The phone number must have all numbers";
 
-    errorPhone.style.display = 'block'
-    errorPhone.style.color = 'red'
-  } else (validatePhone = '')
+    errorPhone.style.display = "block";
+    errorPhone.style.color = "red";
+  } else validatePhone = "";
 
-    // Validate Password
+  // Validate Password
   let numberLetter = /^[0-9a-zA-Z]+$/;
-  if (!(passwordValue.match(numberLetter))) {
-      validatePassword = "The password can contain only numbers and letters"
-  } else (validatePassword = "")
+  if (!passwordValue.match(numberLetter)) {
+    validatePassword = "The password can contain only numbers and letters";
+
+    errorPassword.style.display = "block";
+    errorPassword.style.color = "red";
+  } else validatePassword = "";
 
   // Validate the email
   if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(emailValue)) {
     validateEmail = "The email entered is not valid";
+  } else validateEmail = "";
 
-  } else (validateEmail = '')
-
-
-
-  if (validateEmail || validateLength || validateName || validatePhone || validatePassword) {
+  if (
+    validateEmail ||
+    validateLength ||
+    validateName ||
+    validatePhone ||
+    validatePassword
+  ) {
     // I will use the window.alert for providing feedback to the user
-    window.alert(`${validateEmail} \n ${validateName} \n ${validateLength} \n ${validatePhone} \n ${validateMin} \n ${validatePassword}`)
-
+    window.alert(
+      `${validateEmail} \n${validateName} \n${validateLength} \n${validatePhone} \n${validateMin} \n${validatePassword}`
+    );
   }
-
 }
