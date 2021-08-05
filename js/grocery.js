@@ -279,7 +279,7 @@ function removeFromCart(id) {
     // Will substract one to the quantity
     cart[index].quantity -= 1
   } else {
-    // Will eliminate one element in the position of the index
+    // Will delete one element in the position of the index
     cart.splice(index, 1)
   }
 }
